@@ -9,7 +9,7 @@ import (
 	"blog/internal/services"
 	"blog/pkg/database"
 
-	"github.com/gin-gonic/gin"
+	// "github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -34,9 +34,13 @@ func main() {
 	commentHandler := handlers.NewCommentHandler(commentService)
 	healthHandler := handlers.NewHealthHandler()
 
-	r := gin.Default()
+	// r := gin.Default()
 
-	routes.SetupRoutes(r, authHandler, blogHandler, commentHandler, healthHandler)
+	// routes.SetupRoutes(r, authHandler, blogHandler, commentHandler, healthHandler)
 
+	// r.Run(":" + cfg.AppPort)
+
+	r := routes.SetupRouter(authHandler, blogHandler, commentHandler, healthHandler)
 	r.Run(":" + cfg.AppPort)
+
 }

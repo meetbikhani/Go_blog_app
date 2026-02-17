@@ -1,0 +1,16 @@
+8080
+
+/register
+/login
+/logout
+/api/blogs   -> get
+/api/blogs   -> post
+/blogs/:blog_id   -> get
+/blogs/user    -> get
+/comments/:blogId    ->post
+/comments/:blogId       ->get
+/getuser     ->get
+
+
+
+https://chatgpt.com/share/6991f481-98a0-8004-8485-49f1886f3818

@@ -54,3 +54,7 @@ func (s *AuthService) Login(email, password string) (string, error) {
 	return token.SignedString([]byte(cfg.JWTSecret))
 }
 
+
+func (s *AuthService) GetCurrentUser(id uint) (*models.User, error) {
+	return s.userRepo.FindByID(id)
+}
