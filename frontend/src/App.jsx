@@ -34,10 +34,24 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/blog/:id" element={<BlogDetails />} />
+          <Route
+            path="/blog/:id"
+            element={
+              <ProtectedRoute>
+                <BlogDetails />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/my-blogs"
