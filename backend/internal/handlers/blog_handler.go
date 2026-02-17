@@ -15,15 +15,12 @@ func NewBlogHandler(service *services.BlogService) *BlogHandler {
 	return &BlogHandler{service: service}
 }
 
-
 func (h *BlogHandler) Create(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"status": "ok",
-	})
 
 	var req struct {
 		Title   string `json:"title" binding:"required"`
 		Content string `json:"content" binding:"required"`
+		Image   string `json:"image" binding:"required"`
 	}
 
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -35,7 +32,7 @@ func (h *BlogHandler) Create(c *gin.Context) {
 
 	userID := c.MustGet("user_id").(uint)
 
-	blog, err := h.service.Create(req.Title, req.Content, userID)
+	blog, err := h.service.Create(req.Title, req.Content, userID, req.Image)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -45,7 +42,6 @@ func (h *BlogHandler) Create(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, blog)
 }
-
 
 func (h *BlogHandler) GetByUser(c *gin.Context) {
 
@@ -76,7 +72,6 @@ func (h *BlogHandler) GetByID(c *gin.Context) {
 
 	c.JSON(http.StatusOK, blog)
 }
-
 
 func (h *BlogHandler) GetAll(c *gin.Context) {
 

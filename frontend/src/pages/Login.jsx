@@ -26,7 +26,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await api.post("/login", formData);
+      const response = await api.post("/auth/login", formData);
       await login();
       navigate("/");
     } catch (err) {

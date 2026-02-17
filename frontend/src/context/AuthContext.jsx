@@ -9,7 +9,12 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const { data } = await api.get("/api/blogs/user");
+      console.log(user);
+      if (user) {
+        return;
+      }
+      const { data } = await api.get("/api/v1/user");
+      console.log(data);
       setUser(data);
     } catch (err) {
       setUser(null);
@@ -28,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await api.post("/logout");
+      await api.post("/auth/logout");
     } catch (err) {
       console.error("Logout failed", err);
     }

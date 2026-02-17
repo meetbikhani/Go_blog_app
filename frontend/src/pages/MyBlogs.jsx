@@ -13,7 +13,7 @@ const MyBlogs = () => {
   useEffect(() => {
     const fetchMyBlogs = async () => {
       try {
-        const response = await api.get("/my-blogs");
+        const response = await api.get("/api/v1/blogs/user");
         setBlogs(response.data.blogs || response.data || []);
       } catch (err) {
         console.error("Failed to fetch my blogs:", err);

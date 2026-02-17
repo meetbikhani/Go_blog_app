@@ -11,8 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await api.get("/blogs");
-
+        const response = await api.get("/api/v1/blogs");
         setBlogs(response.data.blogs || response.data || []);
       } catch (err) {
         console.error("Failed to fetch blogs:", err);

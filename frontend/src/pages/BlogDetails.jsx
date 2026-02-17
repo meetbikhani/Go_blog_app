@@ -16,7 +16,8 @@ const BlogDetails = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await api.get(`/blogs/${id}`);
+        const response = await api.get(`/api/v1/blogs/${id}`);
+        console.log(response.data);
         setBlog(response.data.blog || response.data);
       } catch (err) {
         console.error("Failed to fetch blog details:", err);
@@ -67,6 +68,15 @@ const BlogDetails = () => {
 
         <article>
           <header className="mb-12">
+            <div className="relative aspect-[21/9] mb-8 overflow-hidden rounded-xl">
+              <img
+                src={
+                  blog.image || `https://picsum.photos/seed/${blog.ID}/1200/600`
+                }
+                alt={blog.title}
+                className="w-full h-full object-top"
+              />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-tight">
               {blog.title}
             </h1>
@@ -74,14 +84,14 @@ const BlogDetails = () => {
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span className="text-white font-medium">
-                  {blog.author?.name || "Anonymous"}
+                  {blog.user?.name || "Anonymous"}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
                 <span>
-                  {blog.created_at
-                    ? new Date(blog.created_at).toLocaleDateString()
+                  {blog.CreatedAt
+                    ? new Date(blog.CreatedAt).toLocaleDateString("en-GB")
                     : "Recently"}
                 </span>
               </div>

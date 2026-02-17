@@ -20,7 +20,7 @@ const CreateBlog = () => {
     setError("");
 
     try {
-      await api.post("/blogs", formData);
+      await api.post("/api/v1/blogs", formData);
       navigate("/my-blogs");
     } catch (err) {
       console.error("Failed to create blog:", err);
@@ -55,6 +55,21 @@ const CreateBlog = () => {
               }
               placeholder="Enter a catchy title..."
               required
+              className="text-lg py-3"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-2">
+              Image URL
+            </label>
+            <Input
+              type="url"
+              value={formData.image}
+              onChange={(e) =>
+                setFormData({ ...formData, image: e.target.value })
+              }
+              placeholder="Enter an image URL..."
               className="text-lg py-3"
             />
           </div>

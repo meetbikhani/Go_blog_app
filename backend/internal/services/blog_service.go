@@ -13,11 +13,12 @@ func NewBlogService(r repository.BlogRepository) *BlogService {
 	return &BlogService{r}
 }
 
-func (s *BlogService) Create(title, content string, userID uint) (*models.Blog, error) {
+func (s *BlogService) Create(title, content string, userID uint, image string) (*models.Blog, error) {
 	blog := &models.Blog{
 		Title:   title,
 		Content: content,
 		UserID:  userID,
+		Image: image,
 	}
 
 	err := s.repo.Create(blog)

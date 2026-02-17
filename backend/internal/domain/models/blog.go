@@ -8,4 +8,5 @@ type Blog struct {
 	Content string `json:"content"`
 	UserID  uint   `json:"user_id"`
 	User    User   `json:"user"`
+	Image   string `json:"image"`
 }

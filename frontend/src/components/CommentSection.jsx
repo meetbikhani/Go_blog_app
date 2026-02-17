@@ -13,7 +13,7 @@ const CommentSection = ({ blogId }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await api.get(`/blogs/${blogId}/comments`);
+        const response = await api.get(`/api/v1/comments/${blogId}`);
         setComments(response.data.comments || response.data || []);
       } catch (err) {
         console.error("Failed to fetch comments:", err);
@@ -33,8 +33,8 @@ const CommentSection = ({ blogId }) => {
 
     setSubmitting(true);
     try {
-      await api.post(`/blogs/${blogId}/comments`, { content: newComment });
-      const response = await api.get(`/blogs/${blogId}/comments`);
+      await api.post(`/api/v1/comments/${blogId}`, { content: newComment });
+      const response = await api.get(`/api/v1/comments/${blogId}`);
       setComments(response.data.comments || response.data || []);
       setNewComment("");
     } catch (err) {
@@ -102,11 +102,11 @@ const CommentSection = ({ blogId }) => {
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="font-medium text-white">
-                    {comment.author?.name || "Anonymous"}
+                    {comment.user?.name || "Anonymous"}
                   </span>
                   <span className="text-xs text-gray-500">
-                    {comment.created_at
-                      ? new Date(comment.created_at).toLocaleDateString()
+                    {comment.CreatedAt
+                      ? new Date(comment.CreatedAt).toLocaleDateString("en-GB")
                       : ""}
                   </span>
                 </div>

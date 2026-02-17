@@ -18,11 +18,11 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <>
-                <Link to="/create-blog">
+                {/* <Link to="/create-blog">
                   <Button variant="outline" className="hidden sm:block">
                     Write
                   </Button>
-                </Link>
+                </Link> */}
                 <AvatarDropdown user={user} logout={logout} />
               </>
             ) : (

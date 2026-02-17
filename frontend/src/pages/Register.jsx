@@ -25,7 +25,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      await api.post("/register", {
+      await api.post("/auth/register", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -93,7 +93,6 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="••••••••"
                 required
-                minLength={6}
               />
             </div>
 
